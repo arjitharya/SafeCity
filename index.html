@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CityOS | Urban Command Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="CityOS sidebar navigation">
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">C</div>
+        <div>
+          <p class="eyebrow">Urban Command</p>
+          <h1>CityOS</h1>
+        </div>
+      </div>
+
+      <div class="operator-card">
+        <div class="avatar">HP</div>
+        <div>
+          <p class="muted">Welcome back</p>
+          <strong>City Operator</strong>
+        </div>
+      </div>
+
+      <nav class="nav-list" aria-label="Primary city modules">
+        <a href="#overview" class="nav-link active" data-section="overview"><i class="fa fa-dashboard"></i> Overview</a>
+        <a href="#mobility" class="nav-link" data-section="mobility"><i class="fa fa-bus"></i> Mobility</a>
+        <a href="#energy" class="nav-link" data-section="energy"><i class="fa fa-bolt"></i> Energy Grid</a>
+        <a href="#environment" class="nav-link" data-section="environment"><i class="fa fa-leaf"></i> Environment</a>
+        <a href="#safety" class="nav-link" data-section="safety"><i class="fa fa-shield"></i> Public Safety</a>
+        <a href="#services" class="nav-link" data-section="services"><i class="fa fa-cogs"></i> City Services</a>
+        <a href="#districts" class="nav-link" data-section="districts"><i class="fa fa-map"></i> Districts</a>
+        <a href="#settings" class="nav-link" data-section="settings"><i class="fa fa-sliders"></i> Settings</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p class="muted">System Sync</p>
+        <div class="sync-row">
+          <span class="pulse-dot"></span>
+          <span id="syncStatus">Live telemetry online</span>
+        </div>
+      </div>
+    </aside>
+
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="icon-button menu-button" id="menuButton" aria-label="Open menu">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div>
+          <p class="eyebrow">Tokyo Metropolitan Simulation</p>
+          <h2>CityOS Dashboard</h2>
+        </div>
+        <div class="topbar-actions">
+          <label class="search-box" for="citySearch">
+            <i class="fa fa-search"></i>
+            <input type="search" id="citySearch" placeholder="Search districts, alerts, services..." autocomplete="off" />
+          </label>
+          <button class="icon-button" id="themeToggle" aria-label="Toggle dark mode">
+            <i class="fa fa-moon-o"></i>
+          </button>
+          <div class="clock-card" aria-live="polite">
+            <span id="clockTime">--:--</span>
+            <small id="clockDate">Loading date</small>
+          </div>
+        </div>
+      </header>
+
+      <section class="hero-panel" id="overview" data-module="overview">
+        <div>
+          <p class="eyebrow">Real-time city health</p>
+          <h3>Command layer for transport, energy, safety, climate, and services.</h3>
+          <p class="hero-copy">One dashboard to watch the city breathe, panic, recover, and file paperwork about it. Beautiful, really.</p>
+        </div>
+        <div class="health-ring" aria-label="City health score">
+          <svg viewBox="0 0 120 120" role="img">
+            <circle class="ring-bg" cx="60" cy="60" r="50"></circle>
+            <circle class="ring-progress" id="healthRing" cx="60" cy="60" r="50"></circle>
+          </svg>
+          <div class="ring-label">
+            <strong id="healthScore">86</strong>
+            <span>City Health</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="kpi-grid" aria-label="City KPI cards">
+        <article class="kpi-card" data-module="overview">
+          <div class="kpi-icon blue"><i class="fa fa-users"></i></div>
+          <p>Population Active</p>
+          <h3 id="populationCount">13.9M</h3>
+          <span class="trend positive">+1.4% commuter flow</span>
+        </article>
+        <article class="kpi-card" data-module="mobility">
+          <div class="kpi-icon purple"><i class="fa fa-train"></i></div>
+          <p>Transit On Time</p>
+          <h3 id="transitScore">94%</h3>
+          <span class="trend positive">3 minor delays</span>
+        </article>
+        <article class="kpi-card" data-module="energy">
+          <div class="kpi-icon amber"><i class="fa fa-bolt"></i></div>
+          <p>Grid Load</p>
+          <h3 id="gridLoad">72%</h3>
+          <span class="trend warning">Peak forecast 18:30</span>
+        </article>
+        <article class="kpi-card" data-module="environment">
+          <div class="kpi-icon green"><i class="fa fa-leaf"></i></div>
+          <p>Air Quality</p>
+          <h3 id="airQuality">42 AQI</h3>
+          <span class="trend positive">Good</span>
+        </article>
+        <article class="kpi-card" data-module="safety">
+          <div class="kpi-icon red"><i class="fa fa-ambulance"></i></div>
+          <p>Emergency Load</p>
+          <h3 id="emergencyLoad">18%</h3>
+          <span class="trend positive">Normal response</span>
+        </article>
+        <article class="kpi-card" data-module="services">
+          <div class="kpi-icon cyan"><i class="fa fa-tint"></i></div>
+          <p>Water Network</p>
+          <h3 id="waterScore">98%</h3>
+          <span class="trend positive">Pressure stable</span>
+        </article>
+      </section>
+
+      <section class="content-grid two-column">
+        <article class="panel city-map-panel" id="districts" data-module="districts overview">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">District map</p>
+              <h3>Live Urban Grid</h3>
+            </div>
+            <span class="status-pill online">12 districts tracked</span>
+          </div>
+          <div class="city-map" id="cityMap" aria-label="Interactive city district map">
+            <button class="district-marker active" data-district="Shinjuku" style="--x: 41%; --y: 32%;">新</button>
+            <button class="district-marker" data-district="Shibuya" style="--x: 28%; --y: 50%;">渋</button>
+            <button class="district-marker" data-district="Koto" style="--x: 72%; --y: 55%;">江</button>
+            <button class="district-marker" data-district="Chiyoda" style="--x: 52%; --y: 43%;">千</button>
+            <button class="district-marker" data-district="Taito" style="--x: 59%; --y: 24%;">台</button>
+          </div>
+          <div class="district-readout" id="districtReadout">
+            <strong>Shinjuku</strong>
+            <span>Transit: 92% · Energy: 78% · Safety: Normal · AQI: 45</span>
+          </div>
+        </article>
+
+        <article class="panel" data-module="overview safety services">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Live alerts</p>
+              <h3>Operations Feed</h3>
+            </div>
+            <button class="small-button" id="resolveAll">Resolve low risk</button>
+          </div>
+          <div class="feed-list" id="feedList"></div>
+        </article>
+      </section>
+
+      <section class="content-grid three-column">
+        <article class="panel" id="mobility" data-module="mobility overview">
+          <div class="panel-header compact">
+            <h3>Mobility Pulse</h3>
+            <span class="status-pill warning">3 delays</span>
+          </div>
+          <div class="metric-stack">
+            <div class="metric-row">
+              <span>Rail throughput</span>
+              <strong>91%</strong>
+              <div class="bar"><span style="width:91%"></span></div>
+            </div>
+            <div class="metric-row">
+              <span>Bus reliability</span>
+              <strong>84%</strong>
+              <div class="bar"><span style="width:84%"></span></div>
+            </div>
+            <div class="metric-row">
+              <span>Road congestion</span>
+              <strong>63%</strong>
+              <div class="bar danger"><span style="width:63%"></span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" id="energy" data-module="energy overview">
+          <div class="panel-header compact">
+            <h3>Energy Grid</h3>
+            <span class="status-pill online">Stable</span>
+          </div>
+          <div class="spark-grid" aria-label="Energy usage graph">
+            <span style="height:38%"></span>
+            <span style="height:44%"></span>
+            <span style="height:51%"></span>
+            <span style="height:65%"></span>
+            <span style="height:72%"></span>
+            <span style="height:68%"></span>
+            <span style="height:59%"></span>
+            <span style="height:82%"></span>
+            <span style="height:76%"></span>
+            <span style="height:70%"></span>
+          </div>
+          <p class="panel-note">Renewables supplying <strong>38%</strong> of current demand.</p>
+        </article>
+
+        <article class="panel" id="environment" data-module="environment overview">
+          <div class="panel-header compact">
+            <h3>Environment</h3>
+            <span class="status-pill online">Good</span>
+          </div>
+          <div class="weather-tile">
+            <i class="fa fa-cloud"></i>
+            <div>
+              <strong>27°C</strong>
+              <span>Humidity 62% · PM2.5 low</span>
+            </div>
+          </div>
+          <div class="metric-row single">
+            <span>Noise average</span>
+            <strong>54 dB</strong>
+            <div class="bar"><span style="width:54%"></span></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="content-grid two-column">
+        <article class="panel" data-module="districts overview">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">District performance</p>
+              <h3>Borough Index</h3>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table" id="districtTable">
+              <thead>
+                <tr>
+                  <th>District</th>
+                  <th>Mobility</th>
+                  <th>Energy</th>
+                  <th>Safety</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Shinjuku</td><td>92%</td><td>78%</td><td>Normal</td><td><span class="tag green">Healthy</span></td></tr>
+                <tr><td>Shibuya</td><td>86%</td><td>73%</td><td>Busy</td><td><span class="tag amber">Monitor</span></td></tr>
+                <tr><td>Koto</td><td>89%</td><td>81%</td><td>Normal</td><td><span class="tag green">Healthy</span></td></tr>
+                <tr><td>Chiyoda</td><td>96%</td><td>69%</td><td>Normal</td><td><span class="tag green">Healthy</span></td></tr>
+                <tr><td>Taito</td><td>82%</td><td>71%</td><td>Event Load</td><td><span class="tag amber">Monitor</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel" id="services" data-module="services overview">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Municipal work orders</p>
+              <h3>Service Queue</h3>
+            </div>
+            <button class="small-button" id="addTicket">Add ticket</button>
+          </div>
+          <ul class="ticket-list" id="ticketList">
+            <li><span class="ticket-priority high">High</span><span>Repair smart signal cabinet near Kiba Station</span><button>Assign</button></li>
+            <li><span class="ticket-priority medium">Med</span><span>Inspect water pressure anomaly in Toyosu</span><button>Assign</button></li>
+            <li><span class="ticket-priority low">Low</span><span>Replace damaged sensor on public bin cluster</span><button>Assign</button></li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="content-grid three-column settings-grid" id="settings" data-module="settings overview">
+        <article class="panel setting-card">
+          <i class="fa fa-database"></i>
+          <h3>Data Layer</h3>
+          <p>Connect IoT sensors, transit APIs, environmental feeds, and emergency dispatch data.</p>
+        </article>
+        <article class="panel setting-card">
+          <i class="fa fa-lock"></i>
+          <h3>Access Control</h3>
+          <p>Operator roles, district permissions, audit logs, and no, random citizens should not have admin rights. We learned that one.</p>
+        </article>
+        <article class="panel setting-card">
+          <i class="fa fa-code"></i>
+          <h3>Developer Mode</h3>
+          <p>Front-end prototype ready for Firebase, Supabase, Node, or a Unity WebGL city sim integration.</p>
+        </article>
+      </section>
+
+      <footer class="footer">
+        <span>CityOS Prototype · Built from a dashboard template into a smart-city control layer</span>
+        <span id="lastUpdated">Last updated: --</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
