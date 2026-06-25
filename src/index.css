@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* Class-based dark mode — activated by [data-theme="dark"] on an ancestor */
+@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ─── Calendar event dot ─────────────────────────────────────────── */
+.has-event-day { position: relative; }
+.has-event-day::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: #2563eb;
+  border-radius: 9999px;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   DARK THEME — Global content-page overrides
+   Applied via the [data-theme="dark"] wrapper on AdminLayout's root.
+   Uses !important to beat Tailwind's single-class specificity.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── Backgrounds ──────────────────────────────────────────────────── */
+[data-theme="dark"] .bg-white                { background-color: #0b1829 !important; }
+[data-theme="dark"] [class~="bg-white"]       { background-color: #0b1829 !important; }
+[data-theme="dark"] .bg-white\/90            { background-color: rgba(7,13,25,0.93) !important; }
+[data-theme="dark"] .bg-white\/75            { background-color: rgba(5,10,20,0.88) !important; }
+[data-theme="dark"] .bg-slate-50             { background-color: #06101f !important; }
+[data-theme="dark"] .bg-slate-50\/80         { background-color: rgba(6,16,31,0.80) !important; }
+[data-theme="dark"] .bg-slate-100            { background-color: #0c1b30 !important; }
+[data-theme="dark"] .bg-gray-50              { background-color: #06101f !important; }
+[data-theme="dark"] .bg-gray-100             { background-color: #0c1b30 !important; }
+[data-theme="dark"] .bg-gray-200             { background-color: #0f2040 !important; }
+[data-theme="dark"] .bg-blue-50              { background-color: rgba(201,169,110,0.07) !important; }
+[data-theme="dark"] .bg-indigo-50            { background-color: rgba(201,169,110,0.05) !important; }
+[data-theme="dark"] .bg-green-50             { background-color: rgba(52,211,153,0.06) !important; }
+[data-theme="dark"] .bg-red-50               { background-color: rgba(239,68,68,0.06) !important; }
+[data-theme="dark"] .bg-amber-50             { background-color: rgba(201,169,110,0.05) !important; }
+[data-theme="dark"] .bg-emerald-50           { background-color: rgba(52,211,153,0.06) !important; }
+[data-theme="dark"] .bg-violet-50            { background-color: rgba(139,92,246,0.07) !important; }
+[data-theme="dark"] .bg-sky-50               { background-color: rgba(14,165,233,0.05) !important; }
+
+/* Background gradient that AdminLayout uses for the main area */
+[data-theme="dark"] [class*="bg-\\[linear-gradient"] { background: #04080f !important; }
+
+/* ── Text ─────────────────────────────────────────────────────────── */
+[data-theme="dark"] .text-gray-900  { color: #dde5f0 !important; }
+[data-theme="dark"] .text-gray-800  { color: #b8c8de !important; }
+[data-theme="dark"] .text-gray-700  { color: #8fa8c0 !important; }
+[data-theme="dark"] .text-gray-600  { color: #637e96 !important; }
+[data-theme="dark"] .text-gray-500  { color: #4a6278 !important; }
+[data-theme="dark"] .text-gray-400  { color: #364e60 !important; }
+[data-theme="dark"] .text-slate-900 { color: #dde5f0 !important; }
+[data-theme="dark"] .text-slate-800 { color: #b8c8de !important; }
+[data-theme="dark"] .text-slate-700 { color: #8fa8c0 !important; }
+[data-theme="dark"] .text-slate-600 { color: #637e96 !important; }
+[data-theme="dark"] .text-slate-500 { color: #4a6278 !important; }
+[data-theme="dark"] .text-slate-400 { color: #364e60 !important; }
+[data-theme="dark"] .text-blue-700  { color: #c9a96e !important; }
+[data-theme="dark"] .text-blue-600  { color: #c9a96e !important; }
+[data-theme="dark"] .text-blue-800  { color: #e8d5a8 !important; }
+[data-theme="dark"] .text-indigo-600 { color: #c9a96e !important; }
+[data-theme="dark"] .text-indigo-700 { color: #c9a96e !important; }
+[data-theme="dark"] .text-indigo-800 { color: #e8d5a8 !important; }
+[data-theme="dark"] .text-green-800  { color: #4ade80 !important; }
+[data-theme="dark"] .text-emerald-700 { color: #34d399 !important; }
+[data-theme="dark"] .text-red-700   { color: #f87171 !important; }
+[data-theme="dark"] .text-red-600   { color: #f87171 !important; }
+[data-theme="dark"] .text-amber-700 { color: #fbbf24 !important; }
+
+/* ── Borders — near-invisible in dark mode ────────────────────────── */
+[data-theme="dark"] .border-gray-100,
+[data-theme="dark"] .border-gray-200,
+[data-theme="dark"] .border-gray-300,
+[data-theme="dark"] .border-slate-100,
+[data-theme="dark"] .border-slate-200,
+[data-theme="dark"] .border-slate-300,
+[data-theme="dark"] .border-blue-100,
+[data-theme="dark"] .border-blue-200,
+[data-theme="dark"] .border-blue-300,
+[data-theme="dark"] .border-indigo-200,
+[data-theme="dark"] .border-white\/60,
+[data-theme="dark"] .border-white\/70,
+[data-theme="dark"] .border-amber-200,
+[data-theme="dark"] .border-green-200,
+[data-theme="dark"] .border-red-100 {
+  border-color: rgba(255,255,255,0.05) !important;
+}
+
+/* Divide lines */
+[data-theme="dark"] .divide-gray-100 > * + * { border-color: rgba(255,255,255,0.05) !important; }
+[data-theme="dark"] .divide-y > * + *         { border-color: rgba(255,255,255,0.05) !important; }
+
+/* ── Cards/panels — glowing elevation instead of borders ─────────── */
+/* Any card with rounded-2xl + border gets a glow shadow */
+[data-theme="dark"] .rounded-2xl.border.shadow-sm,
+[data-theme="dark"] .rounded-2xl.border.overflow-hidden {
+  box-shadow: 0 0 0 1px rgba(201,169,110,0.07), 0 4px 32px rgba(0,0,0,0.45) !important;
+}
+[data-theme="dark"] .rounded-xl.border {
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 2px 12px rgba(0,0,0,0.35) !important;
+}
+
+/* ── Inputs / Textarea / Select ──────────────────────────────────── */
+[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]) {
+  background-color: #071020 !important;
+  color: #dde5f0 !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+[data-theme="dark"] input::placeholder { color: #2e4460 !important; }
+[data-theme="dark"] textarea {
+  background-color: #071020 !important;
+  color: #dde5f0 !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+[data-theme="dark"] textarea::placeholder { color: #2e4460 !important; }
+[data-theme="dark"] select {
+  background-color: #071020 !important;
+  color: #dde5f0 !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+/* ── Hover states ─────────────────────────────────────────────────── */
+[data-theme="dark"] .hover\:bg-slate-50:hover  { background-color: rgba(201,169,110,0.04) !important; }
+[data-theme="dark"] .hover\:bg-slate-100:hover { background-color: rgba(201,169,110,0.07) !important; }
+[data-theme="dark"] .hover\:bg-gray-50:hover   { background-color: rgba(201,169,110,0.04) !important; }
+[data-theme="dark"] .hover\:bg-gray-100:hover  { background-color: rgba(201,169,110,0.07) !important; }
+[data-theme="dark"] .hover\:bg-blue-100:hover  { background-color: rgba(201,169,110,0.10) !important; }
+[data-theme="dark"] .hover\:bg-red-50:hover    { background-color: rgba(239,68,68,0.08) !important; }
+
+/* ── Shadows ──────────────────────────────────────────────────────── */
+[data-theme="dark"] .shadow-sm { box-shadow: 0 1px 8px rgba(0,0,0,0.5) !important; }
+[data-theme="dark"] .shadow    { box-shadow: 0 2px 14px rgba(0,0,0,0.5) !important; }
+
+/* Focus rings in dark mode — gold instead of blue */
+[data-theme="dark"] .focus\:ring-blue-200:focus,
+[data-theme="dark"] .focus\:ring-blue-100:focus,
+[data-theme="dark"] .focus\:ring-indigo-500:focus {
+  --tw-ring-color: rgba(201,169,110,0.25) !important;
+}
+[data-theme="dark"] .focus\:border-blue-400:focus,
+[data-theme="dark"] .focus\:border-indigo-500:focus {
+  border-color: rgba(201,169,110,0.45) !important;
+}
+
+/* ── Buttons — blue becomes gold in dark mode ─────────────────────── */
+[data-theme="dark"] .bg-blue-600  { background-color: #c9a96e !important; color: #04080f !important; }
+[data-theme="dark"] .bg-blue-700  { background-color: #b89660 !important; color: #04080f !important; }
+[data-theme="dark"] .bg-indigo-600 { background-color: #c9a96e !important; color: #04080f !important; }
+[data-theme="dark"] .bg-indigo-700 { background-color: #b89660 !important; color: #04080f !important; }
+[data-theme="dark"] .hover\:bg-blue-700:hover   { background-color: #b89660 !important; color: #04080f !important; }
+[data-theme="dark"] .hover\:bg-indigo-700:hover { background-color: #b89660 !important; color: #04080f !important; }
+[data-theme="dark"] .bg-blue-50 .text-blue-700  { color: #c9a96e !important; }
+
+/* ── Scrollbar ────────────────────────────────────────────────────── */
+[data-theme="dark"] ::-webkit-scrollbar { width: 4px; height: 4px; }
+[data-theme="dark"] ::-webkit-scrollbar-track { background: #04080f; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: rgba(201,169,110,0.22); border-radius: 2px; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: rgba(201,169,110,0.38); }
+
+/* ── Tables ───────────────────────────────────────────────────────── */
+[data-theme="dark"] table           { background: transparent !important; }
+[data-theme="dark"] thead           { background-color: #06101f !important; }
+[data-theme="dark"] th              { color: #4a6278 !important; border-color: rgba(255,255,255,0.05) !important; }
+[data-theme="dark"] td              { border-color: rgba(255,255,255,0.05) !important; }
+[data-theme="dark"] tr:hover td     { background-color: rgba(201,169,110,0.04) !important; }
+
+/* ── Gradient card headers ────────────────────────────────────────── */
+/* The Dashboard and other pages use "bg-gradient-to-r from-X-50/50 to-transparent"
+   for card header accents. Override the gradient entirely in dark mode.          */
+[data-theme="dark"] [class*="from-blue-50"],
+[data-theme="dark"] [class*="from-indigo-50"],
+[data-theme="dark"] [class*="from-sky-50"],
+[data-theme="dark"] [class*="from-slate-50"],
+[data-theme="dark"] [class*="from-gray-50"] {
+  background: transparent !important;
+}
+/* Remove card header gradient tints only — NOT navigation gradients.
+   Target only gradient classes combined with specific light-color `from-` classes. */
+[data-theme="dark"] .bg-gradient-to-r.from-blue-50\/50,
+[data-theme="dark"] .bg-gradient-to-r.from-indigo-50\/50,
+[data-theme="dark"] .bg-gradient-to-r.from-sky-50\/50 {
+  background-image: none !important;
+}
+
+/* ── rounded-3xl cards (Dashboard uses these) ─────────────────────── */
+[data-theme="dark"] .rounded-3xl.bg-white,
+[data-theme="dark"] .rounded-3xl.border { background-color: #0b1829 !important; }
+[data-theme="dark"] .rounded-3xl        { box-shadow: 0 0 0 1px rgba(201,169,110,0.06), 0 4px 28px rgba(0,0,0,0.45) !important; }
+
+/* ── Badge / pill status colors ──────────────────────────────────── */
+[data-theme="dark"] .bg-emerald-100  { background-color: rgba(52,211,153,0.10) !important; }
+[data-theme="dark"] .bg-amber-100    { background-color: rgba(251,191,36,0.10) !important; }
+[data-theme="dark"] .bg-red-100      { background-color: rgba(239,68,68,0.10) !important; }
+[data-theme="dark"] .bg-blue-100     { background-color: rgba(201,169,110,0.10) !important; }
+[data-theme="dark"] .bg-indigo-100   { background-color: rgba(201,169,110,0.10) !important; }
+[data-theme="dark"] .bg-gray-100     { background-color: rgba(255,255,255,0.06) !important; }
+[data-theme="dark"] .text-emerald-800 { color: #34d399 !important; }
+[data-theme="dark"] .text-amber-800   { color: #fbbf24 !important; }
+[data-theme="dark"] .text-red-800     { color: #f87171 !important; }
+[data-theme="dark"] .text-blue-800    { color: #c9a96e !important; }
+
+/* ── Admin panel structural elements (belt-and-suspenders) ────────── */
+[data-theme="dark"] header { background-color: rgba(4,8,15,0.9) !important; }
+[data-theme="dark"] aside  { background-color: #060d1a !important; }
+
+/* ── Force any remaining white bg ────────────────────────────────── */
+[data-theme="dark"] [class~="bg-white"]   { background-color: #0b1829 !important; }
+[data-theme="dark"] [class~="bg-gray-50"] { background-color: #06101f !important; }
+[data-theme="dark"] [class~="bg-slate-50"]{ background-color: #06101f !important; }
