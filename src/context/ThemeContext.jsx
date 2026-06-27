@@ -4,12 +4,16 @@ const ThemeContext = createContext({ isDark: false, toggleTheme: () => {} })
 
 export function ThemeProvider({ children }) {
   const [isDark, setIsDark] = useState(() => {
-    try { return localStorage.getItem('gsv-admin-theme') === 'dark' }
-    catch { return false }
+    try {
+      const p = new URLSearchParams(window.location.search).get('theme')
+      if (p === 'dark') return true
+      if (p === 'light') return false
+      return localStorage.getItem('safecity-theme') === 'dark'
+    } catch { return false }
   })
 
   useEffect(() => {
-    try { localStorage.setItem('gsv-admin-theme', isDark ? 'dark' : 'light') }
+    try { localStorage.setItem('safecity-theme', isDark ? 'dark' : 'light') }
     catch {}
   }, [isDark])
 

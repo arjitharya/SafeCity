@@ -3,6 +3,15 @@
 /* Class-based dark mode — activated by [data-theme="dark"] on an ancestor */
 @variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
+/* The element that HOLDS data-theme also carries the page background utility
+   (bg-slate-50). Descendant overrides below can't match an element on itself,
+   so colour the themed root directly here. */
+[data-theme="dark"] { background-color: #06101f !important; color-scheme: dark; }
+[data-theme="dark"] ::placeholder { color: #4a6278 !important; }
+[data-theme="dark"] input, [data-theme="dark"] textarea, [data-theme="dark"] select {
+  background-color: #0c1b30 !important; color: #dde5f0 !important; border-color: #1e3a5f !important;
+}
+
 /* ─── Calendar event dot ─────────────────────────────────────────── */
 .has-event-day { position: relative; }
 .has-event-day::after {
@@ -211,3 +220,34 @@
 [data-theme="dark"] [class~="bg-white"]   { background-color: #0b1829 !important; }
 [data-theme="dark"] [class~="bg-gray-50"] { background-color: #06101f !important; }
 [data-theme="dark"] [class~="bg-slate-50"]{ background-color: #06101f !important; }
+
+/* ════════════════════════════════════════════════════════════════════
+   MOBILE / PWA — make the web build feel like a native phone app
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Full-height that survives the mobile URL bar; no sideways scroll. */
+html, body, #root { min-height: 100%; }
+html { height: -webkit-fill-available; }
+body { overflow-x: hidden; overscroll-behavior-y: none; -webkit-text-size-adjust: 100%; }
+
+/* App-like touch behaviour: no blue tap flash, no text selection on chrome. */
+button, a, [role="button"] { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+/* iOS zooms in when you focus an input smaller than 16px — keep inputs at 16px
+   on phones so the viewport never jumps. */
+@media (max-width: 640px) {
+  input, select, textarea { font-size: 16px !important; }
+}
+
+/* Respect the notch / home indicator (with viewport-fit=cover). */
+.safe-top { padding-top: env(safe-area-inset-top); }
+
+/* Smoother momentum scrolling for horizontal tab strips. */
+.overflow-x-auto { -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.overflow-x-auto::-webkit-scrollbar { display: none; }
+
+/* Leaflet tiles shouldn't trigger the page to pan on touch. */
+.leaflet-container { touch-action: pan-x pan-y; background: #e5e7eb; }
+[data-theme="dark"] .leaflet-container { background: #0c1b30; }
+[data-theme="dark"] .leaflet-popup-content-wrapper,
+[data-theme="dark"] .leaflet-popup-tip { background: #0b1829; color: #dde5f0; }

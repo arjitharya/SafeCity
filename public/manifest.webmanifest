@@ -1,0 +1,15 @@
+{
+  "name": "SafeCity — Citizen Safety",
+  "short_name": "SafeCity",
+  "description": "Your personal safety companion: emergency calls, panic alarm, nearby help, earthquake alerts and disaster guides, localised to your country.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b1829",
+  "theme_color": "#dc2626",
+  "categories": ["health", "utilities", "navigation"],
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

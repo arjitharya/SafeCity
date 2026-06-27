@@ -1,16 +1,38 @@
-# React + Vite
+# SafeCity 🛡️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A location-aware **citizen-safety app** for Japan. SafeCity keeps a resident safe in an
+emergency, then doubles as a lightweight civic toolkit for everyday city life.
 
-Currently, two official plugins are available:
+Built with **React 19 + Vite + Tailwind + framer-motion + Leaflet**. Everything runs in the
+browser — location, AI and audio stay on-device.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Safety (primary)
 
-## React Compiler
+- **Panic alarm** — full-screen flashing siren synthesised with the Web Audio API (+ haptics) to attract attention when you're in danger.
+- **One-tap emergency calls** — 110 / 119 / 118 and disaster voicemail (171).
+- **Share my live location** — sends an SOS map pin to your saved emergency contacts via the native share sheet, SMS, or clipboard.
+- **Nearby help map** — interactive OpenStreetMap (Leaflet) plotting the nearest hospitals, police, fire stations, pharmacies and evacuation shelters via the free Overpass API.
+- **Earthquakes** — live USGS feed of recent quakes near you, with magnitude, depth, distance and tsunami flags.
+- **Alerts & news** — disaster/safety headlines first, location-aware (Google News RSS).
+- **Be prepared** — action guides (quake, tsunami, fire, typhoon, first-aid/CPR) and an emergency-kit checklist.
+- **Emergency contacts (ICE)** — stored locally, one-tap dial.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## City services (secondary)
 
-## Expanding the ESLint configuration
+The original civic tools live under a secondary section: waste-collection schedule & sorting,
+air quality & weather, municipal issue reporting, transport, energy grid, and an on-device
+AI assistant (local Ollama).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Run
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # production build
+```
+
+## Data sources
+
+Open-Meteo (weather & air quality), Nominatim (reverse geocoding), Overpass / OpenStreetMap
+(nearby places + map tiles), USGS (earthquakes), Google News RSS (headlines), and a local
+Ollama bridge for the AI assistant. No API keys required.
