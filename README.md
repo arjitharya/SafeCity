@@ -1,6 +1,6 @@
 # SafeCity 🛡️
 
-A location-aware **citizen-safety app** for Japan. SafeCity keeps a resident safe in an
+A **location-aware safety app**. SafeCity keeps a resident/tourist safe in an
 emergency, then doubles as a lightweight civic toolkit for everyday city life.
 
 Built with **React 19 + Vite + Tailwind + framer-motion + Leaflet**. Everything runs in the
